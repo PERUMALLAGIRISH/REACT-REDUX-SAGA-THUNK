@@ -1,0 +1,664 @@
+Pre - requisite:
+	HTML / CSS /Bootstrap
+	JS
+	ES6
+
+Installation:
+	Node JS
+		npm : node pacakage manager = hit the npm repository
+			download the reqd packages [node-modules]
+
+		commnad line tool => create / scaffold project structures
+
+	VSCode Editor
+	Chrome
+	create-react-app => cmd line tool to create React Apps
+
+		one time activity:
+
+		a) npm i -g create-react-app
+			
+			open internet connection
+
+		b) create-react-app my-app
+
+		npx create-react-app my-app
+
+Day 1: React JS
+
+	Is a JS library to build fast and interactive UIs
+	FB
+
+	Heart of React applications = component
+
+		piece of UIs constructed in isolation and then composed to make complex structures
+
+			App
+
+		C1	C2	C3		Cn 
+		
+		
+	Tree structure	
+
+
+	Component => JS class => state and behaviour
+
+	class Tweet {
+		state = {
+			count=0,
+		}; // data to be displayed
+
+		render() {
+			// describes what the UI looks like
+		}
+	}
+
+	a) o.p of render method is a React element = [JS object]
+	b) React maintaines a lightweight representation of DOM in memory
+		Virtual DOM
+	c) Do not work with the real DOM
+
+
+	d) 
+		a) When the state changes , render will generate a new React Element
+		b) React would compare this new virtual DOM structure to the previous virtual DOM 
+		c) React then updates the part of the real DOM
+		d) Real DOM and Virtual DOM in sync
+
+	e) React => reactive to state changes and then updates the real DOM
+
+
+	Project Struture:
+		
+	1) node_modules > has all the dependencies
+	2) Development server > npm start // 3000
+	3) Babel > JS compiler and bunch of other tools
+	4) src > project source code
+	5) public > public assets of the application and index page
+
+	   npm start
+		build + bundles
+
+
+
+	6) index.js > entry point of the application, Rendering the Root Component > App
+
+
+	Installing bootstrap:
+	
+	npm i boostrap
+
+	import in index.js
+
+	code: JSX - Javascript + xml
+
+		 <div>
+	        <h1>Hello with App</h1>
+        	<button className="btn btn-primary btn-sm m-2">Increment</button>
+	        </div>	
+
+	
+
+	Rendering classes dynamically -> Bootstrap
+
+Day 2:
+
+	Rendering the lists....
+
+	Conditional rendering....
+
+	Cannot update the state directly. Make react update the state.
+
+	Arrow fucntions for event handling.
+
+	React application would comprise on a list of components.
+
+	props = Every React Component, JS object and pass data to other components
+
+	props = READOnly 
+
+	state = Data that is local / private to the component
+	other components cannot access the state.
+
+	Children <Counter>   </Counter>
+
+	Raising and Handling events
+
+
+Day 3:
+	Event Handling contd...
+
+	Removed the local state => Counter
+	Maintaining single state within the parent
+
+	
+	Multiple Components in Sync
+
+	Lifting the state Up
+
+	Component Life Cycle:
+
+	1. Mount
+		instance of the component is created and inserted into the DOM
+
+		constructor
+		render .  React gets its vitrual DOM and renders with Actual DOM
+		componentDidMount
+
+	When the component is rendered, its children are also rendered.	
+
+	2. Update
+		wnen the components state or the props are changing
+		
+		render
+		componentDidUpdate
+
+	3. Unmount
+		component is removed from the DOM
+
+		componentWillUnMount
+	
+
+Day 4:	
+
+	Async calls
+
+		3rd party API, RESt APis
+
+		a) spring based / node -js , server - enabled to post / retreive
+		b) Api : fb. Retrievals are only allowed
+
+
+		i) Task: create-react-app intermediate-app
+
+	axios:
+	       JS based http library helps to interface with REST APIS	
+		easy to use
+		cancel and send different requests
+
+		ii) Task: npm install axios
+
+	Assignment: As Added a person, similarly delete a person based on id
+		- axios.delete(`http://jsonplaceholder.typicode.com/users/${this.state.id}`)
+			.then(res => {
+				console.log(res.data);
+			})
+		- handle state with id. Ask the user to input id
+
+	Routing
+		SPA : Single Page Application.
+		Redirection from one page to the other page
+
+		npm i react-router-dom
+
+		BrowserRouter  = server will handle dynamic requests
+
+		HashRouter = used for static websites. server is responding to file requests
+
+		<Route> main building block of React Router = configured
+
+			<Route path='home' component={HomeComponent} />
+
+			<Route path='home' render> => fn that returns a React element . Inline rendering
+
+			<Route path='home' children>
+
+		Links: navigate between different pages
+
+		Switch: group all the Routes together
+
+		RouteParameters and they can be fetched.
+
+			append paramters in Url
+
+		  <Route path="/personInput/:name" component={PersonInput} />
+
+	Form Validations
+		Sign Up Form 
+
+
+
+Day 5: 
+	E-Commerce Case study:
+
+	1) create-react-app e-shopping
+	2) npm i bootstrap
+	3) e-shopping > npm i json-server -g
+		mock server for REST Api calls
+
+		public > db.json
+		       > products > all product images	
+		a) db.json
+			Array of all the products
+
+		b) Need to make a Rest API call to the json-server
+
+		c) Need to start json-server at port : 8080
+
+
+		package.json > 
+			scripts : {
+				"server": "json-server public/db.json --port 8000"	
+			}
+
+
+       4) Lifting up the state
+		App: All the state is here
+		state: { products:[] }
+
+			Products
+			Basket
+			Filter
+			
+
+	5) App component mounts then , load the data from db.json file (REST API)
+		and update the state
+			
+
+Day 6:
+	E-Commerce Case Study Contd...
+
+	a) Display Products
+	b) Adding to cart => cartItems
+	c) Basket : cartItems and
+	d) Remove Item from Cart
+
+	e) Sum of all items in cart 
+		Sum = 0
+
+	f) Filter:
+		1) sort by price: High to low and low to high
+		2) handle by Size: XS, S, M , L , XL , XXL
+
+
+Day 7:
+	Redux Architecture
+	
+	create-react-app redux-counter
+
+	npm i redux
+
+	Redux Fundamentals: STATE Management
+
+	1) Redux is a predictable state container for JS appls
+
+	2) Application state with a single GLOBAL Object = STORE
+
+	3) Single Source of Truth = Object tree is maintained at one place
+
+	4) State is READ-ONLY. To change the state => Emit an ACTION. describes what has happened
+		Object, type = type of action to be performed
+
+		return {
+			type: 'ITEMS_REQUEST', // type of action
+
+			flag:true // change is caused. payload object
+		}
+
+	5) Changes are made with functions = REDUCERS => pure functions
+		REDUCER => central place where the state mutates
+
+	6) state :{
+		items:[],
+		flag:flase
+	  }
+
+	7) Define a Reducer: UNIDIRECTIONAL
+		const 	 = (state={}, action) => {
+			switch(action.type) {
+				case 'ITEMS_REQUEST' :
+	
+				return Object.assign({},state,{
+					flag :action.flag
+				}
+			})
+
+
+			default: return state;
+		}
+
+
+	8) Store is an immutable. Only one store in the application
+
+		import {createStore} from 'redux';
+
+		createStore(reducer,[preloadState],[enhancer])
+
+
+		store has 3 methods:
+
+		a) store.getState() -> Retrives the current state of the Redux store
+
+		b) store.dispatch({action : type,payload})
+
+		c) store.subscribe( () => {
+
+			register  a callback that Redux Store will call when action is dipatched
+		})
+	
+
+	9) Redux Actions: IMPORTANT
+
+		{Type:'GET_ORDER', payload:{orderId}}
+
+		{Type:'GET_WISHLIST', payload:{userId}}
+				
+				OR
+
+		Action Creator: functions
+
+			function itemRequest(boolean, startIndex,indexItem) {
+				
+				let paylod = {isloading:boolean, startIndex, endIndex}
+
+				return {
+					type:'ITEMS_REQUEST',
+					payload
+				}
+					
+			}
+			
+		store.dispatch(itemRequest(true,1,10))
+
+
+Day 8:
+	React - Redux application
+	
+	create-react-app post-redux-app
+
+	npm i axios
+
+	npm i redux
+
+	npm i react-redux
+
+	npm i redux-thunk	
+
+
+	Provider => Glue between React and Redux
+
+		Redux => STORE
+
+	STORE
+
+	REDUCER
+
+	ACTION
+
+
+	a) <Provider store={store}>
+
+	b) createdStore 
+		|
+		c) RootReducer
+			|
+		d) PostReducer
+			|
+		e) Action {Type,payload}
+
+	
+Day 9:
+	axios.post(url)
+		new Post Object
+
+		
+	CRUD
+		json-server
+			public > db.json 
+
+	Add Product => 	post add
+
+	GET
+	POST
+	PUT
+	DELETE	
+
+
+
+Day 10:
+	Redux Saga
+
+	i) create-react-app react-saga-app
+		
+	ii) npm i redux-saga
+
+	Genertors =  es6
+		are special *functions that build on a value for iterations
+		maintains the state and pauses execution
+		Returning a value should stop the generator
+
+
+	Redux Flow:
+		UI => dispatch an action : Type and payload
+		Redcuers => Actions => store is updated. state is updated = SINGLE STORE
+		Component is re-rendered			
+
+
+	SAGA : pattern
+		saga => generator functions
+		DISPATCH ACTION => SAGA => REDUCER (store will update)
+
+
+		Design Pattern : event flow
+
+		a) Watcher 
+		b) Worker
+
+
+		1) on the onset of any action => watcher => that will watch the action
+
+		2) worker do some action and then invoke the reducer
+
+
+		Manage Side effects of the application
+		cancel the request
+
+	Assignment: Implement SAGA in redux-post-app
+		-> GET ALL POSTS
+
+
+	Redux : Single store
+		Synchronous operations
+
+	Thunk / Saga:
+		Asynchronous operations
+
+	Thunk:
+		actionCreators => async calls
+				=> resultant data => Reducer => update the state
+		UI ACTION (actionCreators) => REDUCER	
+
+	Saga: Manage Side effects of the application
+		Event based Middleware => async calls
+
+					=> Sucesss => Reducer => update the state
+					=> failure => print the error
+
+		UI ACTION => SAGA(async calls) => REDUCER
+
+
+
+Day 11:
+	Redux - Saga application
+	Redux-post-app
+
+
+	UI => dispatch Action => Saga => Reducer (will update the state) => Component
+				a) Rest api
+
+		a) Oberve the actions UI
+		b) api call / produce data
+		c) send the action to the reducer	
+	
+	Reducers are pure functions
+		a) state
+		b) Action : {type:'X',payload}
+
+
+	POST => <Form> => Title and Body
+
+	separate action file => UI action from user along with the data => Action => saga
+
+Day 12:
+	Jest Testing
+	
+	Testing framework to run the test cases 
+	
+	a) Unzip the Testing application shared
+
+	b) npm install
+
+	c) bable and jest
+		
+
+		app.test.js
+		app.spec.js
+
+	Test folders:
+
+		__test__
+
+	add a todo
+
+	deleting a todo
+
+	toggling a todo
+
+	JASMINE
+
+	describe('test suite', () => {
+		
+		it('test case', () => {
+
+			// test case 
+		})
+
+	})
+
+	// run individual test cases
+	test('what is to be tested', () => {
+
+		// test logic here
+	})
+
+	
+	npm test -- --watch
+
+	react-test-renderer => React Snapshot testing
+
+
+Day 13:
+	React - Node - Integration
+
+	Node JS
+
+		backend server => DB [Mongo DB]
+
+		Express JS
+
+	Server 
+		Node <=> Express <=> Mongo DB
+
+	Client 
+		React => Node Server
+
+
+
+	Node JS: 
+		runtime envt for JS on the server side
+		cross paltform
+
+		Chrome's v8 engine
+
+		backend services / apis
+
+		highly scalable and real time applications
+
+	Expesss JS
+
+		npm i express
+
+		Server built on top of Node 
+			Http Server
+
+		create custom Apis
+
+	prod-crud-sever => Node based project server 
+
+
+	cors : cross browser resource sharing
+	
+	express: Server built on top of Node 
+			Http Server
+
+	Mongo DB : db : DB server(mongod.exe) and the client(mongo.exe) on the same machine
+			JSONS
+		Tables => collections 
+		Rows => document
+
+	**** After mongo DB installed Mongo DB *****
+
+		C:\data\db
+
+	Model: DB schema: Product
+
+		Mongoose => Product => products collection
+
+	Mongoose: Mongodb and Express
+
+		Express => Mongoose => Mongo DB
+
+				find()
+				findById()
+				save()
+				remove()	
+
+	Server URls: Routes are powered under Express:
+
+		WEB APis
+			Getting all the products: GET
+		http://localhost:8888/api/products
+
+		Post the product:POST
+		http://localhost:8888/api/product
+
+
+		Delete the product: DELETE
+		http://localhost:8888/api/product/123
+
+		Update the Product: PUT
+		http://localhost:8888/products/123
+
+		POST / PUT : sending the data in the Http Request Body:
+		
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+	
